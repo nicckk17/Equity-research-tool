@@ -1,0 +1,15 @@
+{
+  "_about": "Peer groups the tool picks from automatically. If a ticker is not in any group, pass --peers on the command line.",
+  "canadian_banks":     ["RY.TO", "TD.TO", "BNS.TO", "BMO.TO", "CM.TO", "NA.TO"],
+  "integrated_energy":  ["SU.TO", "CVE.TO", "CNQ.TO", "IMO.TO"],
+  "oil_gas_producers":  ["TOU.TO", "ARX.TO", "WCP.TO", "BTE.TO", "PEY.TO"],
+  "pipelines":          ["ENB.TO", "TRP.TO", "PPL.TO", "KEY.TO"],
+  "telecom":            ["BCE.TO", "T.TO", "RCI-B.TO", "QBR-B.TO"],
+  "railways":           ["CNR.TO", "CP.TO"],
+  "life_insurers":      ["MFC.TO", "SLF.TO", "GWO.TO", "IAG.TO"],
+  "grocers":            ["L.TO", "MRU.TO", "EMP-A.TO"],
+  "utilities":          ["FTS.TO", "EMA.TO", "H.TO", "AQN.TO", "CU.TO"],
+  "gold_miners":        ["ABX.TO", "AEM.TO", "K.TO", "WPM.TO", "FNV.TO"],
+  "software":           ["CSU.TO", "OTEX.TO", "DSG.TO", "SHOP.TO"],
+  "asset_managers":     ["BN.TO", "BAM.TO", "IGM.TO"]
+}

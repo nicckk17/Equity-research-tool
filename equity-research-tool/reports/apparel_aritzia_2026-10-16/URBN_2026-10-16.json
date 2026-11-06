@@ -1,0 +1,524 @@
+{
+  "company": {
+    "ticker": "URBN",
+    "name": "Urban Outfitters",
+    "sector": "default",
+    "industry": null,
+    "currency": "USD",
+    "price": 87.4,
+    "price_basis": "latest close Oct 2026",
+    "market_cap": null,
+    "eps_ttm": 6.35,
+    "eps_forward": 6.522388059701493,
+    "book_value_per_share": 33.32,
+    "dps_ttm": 0,
+    "pe_trailing": 13.763779527559057,
+    "pe_forward": 13.4,
+    "ev_ebitda": 10.03,
+    "pb": 2.6230492196878754,
+    "net_margin": 0.0879,
+    "operating_margin": 0.0974,
+    "roe": 0.2094,
+    "debt_to_equity": 0.43,
+    "fcf_yield": 0.0394,
+    "revenue_cagr_3y": 0.08738037300289214,
+    "eps_cagr_3y": 0.43846908227238557,
+    "revenue_history": {
+      "FY2023": 4795,
+      "FY2024": 5153,
+      "FY2025": 5551,
+      "FY2026": 6165
+    },
+    "eps_history": {
+      "FY2023": 1.7,
+      "FY2024": 3.05,
+      "FY2025": 4.26,
+      "FY2026": 5.06
+    },
+    "beta": 1.24,
+    "sharpe": 0.6546602363290042,
+    "max_drawdown": -0.4155966176010022,
+    "dividend_yield": 0.0,
+    "payout_ratio": null,
+    "cet1_ratio": null,
+    "analyst": {
+      "rating": "Buy",
+      "count": 15,
+      "target_mean": 89.43,
+      "target_low": 75,
+      "target_high": 111,
+      "as_of": "2026-09-11",
+      "source": "stockanalysis.com forecast page"
+    },
+    "monthly_prices": {
+      "2021-10": 31.93,
+      "2021-11": 31.67,
+      "2021-12": 29.36,
+      "2022-01": 28.72,
+      "2022-02": 27.51,
+      "2022-03": 25.11,
+      "2022-04": 23.8,
+      "2022-05": 21.05,
+      "2022-06": 18.66,
+      "2022-07": 20.48,
+      "2022-08": 20.13,
+      "2022-09": 19.65,
+      "2022-10": 23.86,
+      "2022-11": 28.94,
+      "2022-12": 23.85,
+      "2023-01": 27.39,
+      "2023-02": 26.95,
+      "2023-03": 27.72,
+      "2023-04": 27.06,
+      "2023-05": 30.82,
+      "2023-06": 33.13,
+      "2023-07": 36.37,
+      "2023-08": 33.21,
+      "2023-09": 32.69,
+      "2023-10": 34.62,
+      "2023-11": 35.7,
+      "2023-12": 35.69,
+      "2024-01": 38.0,
+      "2024-02": 41.55,
+      "2024-03": 43.42,
+      "2024-04": 38.96,
+      "2024-05": 41.71,
+      "2024-06": 41.05,
+      "2024-07": 46.05,
+      "2024-08": 36.32,
+      "2024-09": 38.31,
+      "2024-10": 35.95,
+      "2024-11": 48.73,
+      "2024-12": 54.88,
+      "2025-01": 55.42,
+      "2025-02": 58.19,
+      "2025-03": 52.4,
+      "2025-04": 52.78,
+      "2025-05": 69.9,
+      "2025-06": 72.54,
+      "2025-07": 75.28,
+      "2025-08": 67.08,
+      "2025-09": 71.43,
+      "2025-10": 64.61,
+      "2025-11": 74.07,
+      "2025-12": 75.26,
+      "2026-01": 70.85,
+      "2026-02": 66.2,
+      "2026-03": 63.35,
+      "2026-04": 70.34,
+      "2026-05": 72.65,
+      "2026-06": 70.86,
+      "2026-07": 74.18,
+      "2026-08": 80.69,
+      "2026-09": 76.38,
+      "2026-10": 87.4
+    },
+    "notes": [
+      "Max drawdown and Sharpe from month-end closes (a daily-price drawdown would be somewhat deeper)",
+      "Beta: stockanalysis.com published 5Y beta"
+    ],
+    "fetched_at": "web data collected 2026-10-16"
+  },
+  "peers": [
+    "ATZ.TO",
+    "LULU",
+    "ANF",
+    "GOOS.TO",
+    "GIL.TO"
+  ],
+  "peer_names": {
+    "ATZ.TO": "Aritzia Inc.",
+    "LULU": "lululemon athletica",
+    "ANF": "Abercrombie & Fitch",
+    "GOOS.TO": "Canada Goose Holdings",
+    "GIL.TO": "Gildan Activewear"
+  },
+  "sector_model": "default",
+  "weights": {
+    "valuation": 0.25,
+    "profitability": 0.2,
+    "balance_sheet": 0.2,
+    "growth": 0.15,
+    "risk": 0.1,
+    "dividend": 0.1
+  },
+  "params": {
+    "valuation": {
+      "label": "Valuation vs peers",
+      "weight": 0.25,
+      "score": 46.666666666666664,
+      "contribution": 11.666666666666666,
+      "metrics": [
+        {
+          "metric": "pe_trailing",
+          "direction": "lower",
+          "value": 13.763779527559057,
+          "peers": {
+            "ATZ.TO": 30.37373737373737,
+            "LULU": 8.108837970540097,
+            "ANF": 13.068787618228718,
+            "GOOS.TO": 20.24137931034483,
+            "GIL.TO": 119.14
+          },
+          "peer_median": 20.24137931034483,
+          "beats": 3.0,
+          "n_peers": 5,
+          "score": 60.0
+        },
+        {
+          "metric": "ev_ebitda",
+          "direction": "lower",
+          "value": 10.03,
+          "peers": {
+            "ATZ.TO": 20.93,
+            "LULU": 4.92,
+            "ANF": 7.31,
+            "GOOS.TO": 5.27,
+            "GIL.TO": 10.77
+          },
+          "peer_median": 7.31,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        },
+        {
+          "metric": "pb",
+          "direction": "lower",
+          "value": 2.6230492196878754,
+          "peers": {
+            "ATZ.TO": 12.115229653505237,
+            "LULU": 2.30979020979021,
+            "ANF": 4.761591478696742,
+            "GOOS.TO": 2.1821561338289963,
+            "GIL.TO": 2.3278624462680737
+          },
+          "peer_median": 2.3278624462680737,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        }
+      ]
+    },
+    "profitability": {
+      "label": "Profitability",
+      "weight": 0.2,
+      "score": 26.666666666666668,
+      "contribution": 5.333333333333334,
+      "metrics": [
+        {
+          "metric": "net_margin",
+          "direction": "higher",
+          "value": 0.0879,
+          "peers": {
+            "ATZ.TO": 0.1145,
+            "LULU": 0.1278,
+            "ANF": 0.1004,
+            "GOOS.TO": 0.037,
+            "GIL.TO": 0.0128
+          },
+          "peer_median": 0.1004,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        },
+        {
+          "metric": "operating_margin",
+          "direction": "higher",
+          "value": 0.0974,
+          "peers": {
+            "ATZ.TO": 0.1492,
+            "LULU": 0.1662,
+            "ANF": 0.1408,
+            "GOOS.TO": 0.1323,
+            "GIL.TO": 0.2013
+          },
+          "peer_median": 0.1492,
+          "beats": 0.0,
+          "n_peers": 5,
+          "score": 0.0
+        },
+        {
+          "metric": "roe",
+          "direction": "higher",
+          "value": 0.2094,
+          "peers": {
+            "ATZ.TO": 0.3591,
+            "LULU": 0.309,
+            "ANF": 0.4061,
+            "GOOS.TO": 0.1218,
+            "GIL.TO": 0.0868
+          },
+          "peer_median": 0.309,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        }
+      ]
+    },
+    "balance_sheet": {
+      "label": "Balance sheet & cash flow",
+      "weight": 0.2,
+      "score": 60.0,
+      "contribution": 12.0,
+      "metrics": [
+        {
+          "metric": "debt_to_equity",
+          "direction": "lower",
+          "value": 0.43,
+          "peers": {
+            "ATZ.TO": 0.76,
+            "LULU": 0.45,
+            "ANF": 0.94,
+            "GOOS.TO": 1.53,
+            "GIL.TO": 1.48
+          },
+          "peer_median": 0.94,
+          "beats": 5.0,
+          "n_peers": 5,
+          "score": 100.0
+        },
+        {
+          "metric": "fcf_yield",
+          "direction": "higher",
+          "value": 0.0394,
+          "peers": {
+            "ATZ.TO": 0.0297182573994014,
+            "LULU": 0.1235,
+            "ANF": 0.08780503980525035,
+            "GOOS.TO": 0.0855,
+            "GIL.TO": 0.068
+          },
+          "peer_median": 0.0855,
+          "beats": 1.0,
+          "n_peers": 5,
+          "score": 20.0
+        }
+      ]
+    },
+    "growth": {
+      "label": "Growth",
+      "weight": 0.15,
+      "score": 60.0,
+      "contribution": 9.0,
+      "metrics": [
+        {
+          "metric": "revenue_cagr_3y",
+          "direction": "higher",
+          "value": 0.08738037300289214,
+          "peers": {
+            "ATZ.TO": 0.190149064425144,
+            "LULU": 0.11033828001023172,
+            "ANF": 0.12504868398087354,
+            "GOOS.TO": 0.0788082492154889,
+            "GIL.TO": 0.03756311491536568
+          },
+          "peer_median": 0.11033828001023172,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        },
+        {
+          "metric": "eps_cagr_3y",
+          "direction": "higher",
+          "value": 0.43846908227238557,
+          "peers": {
+            "ATZ.TO": 0.25214356127864423,
+            "LULU": 0.2567696584205337,
+            "ANF": 4.9363645104709315,
+            "GOOS.TO": -0.30663872564936523,
+            "GIL.TO": -0.03904752602987749
+          },
+          "peer_median": 0.25214356127864423,
+          "beats": 4.0,
+          "n_peers": 5,
+          "score": 80.0
+        }
+      ]
+    },
+    "risk": {
+      "label": "Risk",
+      "weight": 0.1,
+      "score": 60.0,
+      "contribution": 6.0,
+      "metrics": [
+        {
+          "metric": "beta",
+          "direction": "lower",
+          "value": 1.24,
+          "peers": {
+            "ATZ.TO": 1.73,
+            "LULU": 0.92,
+            "ANF": 1.01,
+            "GOOS.TO": 1.72,
+            "GIL.TO": 1.14
+          },
+          "peer_median": 1.14,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        },
+        {
+          "metric": "sharpe",
+          "direction": "higher",
+          "value": 0.6546602363290042,
+          "peers": {
+            "ATZ.TO": 0.6663043894026383,
+            "LULU": -0.61876714028516,
+            "ANF": 0.6964171876715829,
+            "GOOS.TO": -0.43516043291836515,
+            "GIL.TO": 0.3175180738148777
+          },
+          "peer_median": 0.3175180738148777,
+          "beats": 3.0,
+          "n_peers": 5,
+          "score": 60.0
+        },
+        {
+          "metric": "max_drawdown",
+          "direction": "higher",
+          "value": -0.4155966176010022,
+          "peers": {
+            "ATZ.TO": -0.6342207902323216,
+            "LULU": -0.8118680201060064,
+            "ANF": -0.6360647445624683,
+            "GOOS.TO": -0.8051606108478147,
+            "GIL.TO": -0.35073662183653986
+          },
+          "peer_median": -0.6360647445624683,
+          "beats": 4.0,
+          "n_peers": 5,
+          "score": 80.0
+        }
+      ]
+    },
+    "dividend": {
+      "label": "Dividend",
+      "weight": 0.1,
+      "score": 40.0,
+      "contribution": 4.0,
+      "metrics": [
+        {
+          "metric": "dividend_yield",
+          "direction": "higher",
+          "value": 0.0,
+          "peers": {
+            "ATZ.TO": 0.0,
+            "LULU": 0.0,
+            "ANF": 0.0,
+            "GOOS.TO": 0.0,
+            "GIL.TO": 0.022998153432936045
+          },
+          "peer_median": 0.0,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        },
+        {
+          "metric": "payout_ratio",
+          "direction": "lower",
+          "value": null,
+          "peers": {
+            "ATZ.TO": null,
+            "LULU": null,
+            "ANF": null,
+            "GOOS.TO": null,
+            "GIL.TO": 2.6298
+          },
+          "peer_median": 2.6298,
+          "beats": 0,
+          "n_peers": 1,
+          "score": null
+        }
+      ]
+    }
+  },
+  "weighted_score": 48.0,
+  "call": "HOLD",
+  "thresholds": {
+    "buy_at_or_above": 70,
+    "hold_at_or_above": 37.5
+  },
+  "target": {
+    "peer_pes_used": {
+      "ATZ.TO": {
+        "pe": 29.404550484094056,
+        "basis": "forward"
+      },
+      "LULU": {
+        "pe": 11.890000000000002,
+        "basis": "forward"
+      },
+      "ANF": {
+        "pe": 12.131057651844579,
+        "basis": "forward"
+      },
+      "GOOS.TO": {
+        "pe": 12.66,
+        "basis": "forward"
+      },
+      "GIL.TO": {
+        "pe": 8.05,
+        "basis": "forward"
+      }
+    },
+    "peer_pes_dropped": {},
+    "price": 87.4,
+    "forward_eps": 6.522388059701493,
+    "peer_avg_pe": 14.827121627187728,
+    "target": 96.708241060911,
+    "upside": 0.10650161396923341,
+    "pb_cross_check": {
+      "peer_avg_pb": 4.739325984417852,
+      "bvps": 33.32,
+      "target": 157.91434180080284
+    }
+  },
+  "downside": {
+    "max_drawdown": -0.4155966176010022,
+    "price_at_max_drawdown": 51.076855621672415
+  },
+  "analyst": {
+    "rating": "Buy",
+    "count": 15,
+    "target_mean": 89.43,
+    "target_low": 75,
+    "target_high": 111,
+    "as_of": "2026-09-11",
+    "source": "stockanalysis.com forecast page",
+    "upside": 0.02322654462242557,
+    "tool_vs_analyst": 0.08138478207437094
+  },
+  "drawdown_context": {
+    "stock_drawdown": -0.4155966176010022,
+    "peak": "2021-10",
+    "trough": "2022-06",
+    "peers": {
+      "ATZ.TO": -0.2849815346737793,
+      "LULU": -0.4150125533786828,
+      "ANF": -0.5720789074355083,
+      "GOOS.TO": -0.49411764705882355,
+      "GIL.TO": -0.17343598783114367
+    },
+    "peer_avg_same_window": -0.3879253260755875,
+    "sector_members": [
+      "ATZ.TO",
+      "LULU",
+      "ANF",
+      "GOOS.TO",
+      "GIL.TO"
+    ],
+    "sector_same_window": -0.3879253260755875,
+    "sector_max_drawdown": -0.4234264256560938,
+    "sector_peak": "2021-11",
+    "sector_trough": "2022-06",
+    "excess_vs_sector": -0.0276712915254147
+  },
+  "flags": [
+    "Max drawdown and Sharpe from month-end closes (a daily-price drawdown would be somewhat deeper)",
+    "Beta: stockanalysis.com published 5Y beta"
+  ],
+  "sector_rank": 3,
+  "sector_size": 6,
+  "rationale": "Urban Outfitters scores 48% against ATZ, LULU, ANF, GOOS, GIL and ranks #3 of 6 in its sector, which maps to a HOLD. Its strongest area is balance sheet & cash flow (60%), led by Debt-to-equity of 0.4x vs a peer median of 0.9x. The weakest is profitability (27%), dragged down by Operating margin of 9.7% vs a peer median of 14.9%. Applying the peer average forward P/E of 14.8x to forward EPS of $6.52 gives a target of $96.71, +10.7% from $87.40. Analysts' consensus target is $89.43 (+2.3%), with 15 analysts rating it Buy. The downside case is a repeat of its five-year max drawdown of -41.6%, roughly $51.08. Over the same months the sector index moved -38.8%, so the fall largely tracked the sector. Beta of 1.24 means it has moved more than the market.",
+  "rationale_source": "template (every number traceable to the scorecard)"
+}

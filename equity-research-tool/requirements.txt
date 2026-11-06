@@ -1,0 +1,9 @@
+yfinance>=0.2.54
+pandas>=2.0
+numpy>=1.24
+# optional, only for --ai rationale:
+# anthropic>=0.40
+# optional: auto-picked peers (--peers not needed) and the TMX cross-check (--crosscheck):
+# financedatabase>=2.2
+# openbb-core
+# openbb-tmx>=2.0

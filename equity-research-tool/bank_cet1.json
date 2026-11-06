@@ -1,0 +1,10 @@
+{
+  "_about": "CET1 capital ratio isn't in the free market-data feed, so it's entered by hand from each bank's quarterly report. Update after each earnings season.",
+  "_as_of": "Q3 fiscal 2026 (quarter ended July 31, 2026)",
+  "RY.TO":  {"cet1": 0.135, "source": "RBC Q3 2026 results release"},
+  "TD.TO":  {"cet1": 0.143, "source": "TD Q3 2026 earnings news release"},
+  "BNS.TO": {"cet1": 0.131, "source": "Scotiabank Q3 2026 results release"},
+  "BMO.TO": {"cet1": 0.130, "source": "BMO Q3 2026 results release"},
+  "CM.TO":  {"cet1": 0.134, "source": "CIBC Q3 2026 results release"},
+  "NA.TO":  {"cet1": 0.135, "source": "National Bank Q3 2026 results release"}
+}

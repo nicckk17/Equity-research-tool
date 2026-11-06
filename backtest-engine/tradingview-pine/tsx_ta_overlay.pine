@@ -1,0 +1,190 @@
+//@version=6
+// TSX TA Overlay v1 — one indicator slot (free plan allows 2 per chart).
+// Rules come from the TA notes: Murphy [M], Varsity [V], Dow Award [DA], Power of Stocks [PS].
+// Same definitions as the Python kit (tsxta/), so chart and backtest agree.
+// Non-repainting: signals use confirmed bars; index data uses the [1] + lookahead_on idiom.
+indicator("TSX TA Overlay", shorttitle = "TSX-TA", overlay = true, max_boxes_count = 200, max_labels_count = 200)
+
+// ───────── inputs
+grpG = "Gaps"
+gapMinPct   = input.float(0.5, "Min gap size %", minval = 0.1, step = 0.1, group = grpG)
+showGaps    = input.bool(true, "Draw unfilled gaps", group = grpG)
+maxGaps     = input.int(30, "Max gaps tracked", minval = 5, maxval = 150, group = grpG)
+grpT = "Trend / regime"
+adxHi       = input.int(25, "ADX trending above", group = grpT)
+adxLo       = input.int(20, "ADX ranging below", group = grpT)
+showMAs     = input.bool(true, "Show SMA 20/50/200", group = grpT)
+showDA      = input.bool(true, "Show Dow Award trailing stop", group = grpT)
+grpR = "Relative strength"
+idxSym      = input.symbol("TSX:TSX", "Benchmark index", group = grpR)
+grpS = "Odds from Python study (paste after each re-run)"
+oddsUp      = input.string("run study", "Up-gap odds text", group = grpS)
+oddsDn      = input.string("run study", "Down-gap odds text", group = grpS)
+grpD = "Display"
+tblPos      = input.string("top_right", "Table position", options = ["top_right", "bottom_right", "top_left", "bottom_left"], group = grpD)
+
+// ───────── core indicators (all computed every bar; v6 and/or are lazy)
+sma20  = ta.sma(close, 20)
+sma50  = ta.sma(close, 50)
+sma200 = ta.sma(close, 200)
+atr14  = ta.atr(14)
+rsi14  = ta.rsi(close, 14)
+[diP, diM, adx] = ta.dmi(14, 14)
+[macdL, macdS, macdH] = ta.macd(close, 12, 26, 9)
+volAvg10 = ta.sma(volume, 10)[1]
+volRatio = volAvg10 > 0 ? volume / volAvg10 : na
+stretch  = atr14 > 0 ? (close - sma20) / atr14 : na
+
+// streak of consecutive up/down closes [PS]
+var int streak = 0
+streak := close > close[1] ? (streak > 0 ? streak + 1 : 1) : close < close[1] ? (streak < 0 ? streak - 1 : -1) : 0
+
+regime  = adx > adxHi ? "Trending" : adx < adxLo ? "Ranging" : "Transition"
+trendUp = close > sma200 and sma200 > sma200[20]
+trendDn = close < sma200 and sma200 < sma200[20]
+
+// RSI read depends on regime [PS 40/60 in trends, M/V 30/70 in ranges]
+rsiRead = regime == "Trending" ? (rsi14 >= 60 ? "Bull zone (>60)" : rsi14 <= 40 ? "Bear zone (<40)" : "Neutral 40–60") : (rsi14 >= 70 ? "Overbought (>70)" : rsi14 <= 30 ? "Oversold (<30)" : "Mid-range")
+
+// ───────── Dow Award trend state [DA]: entry band and ratcheting stop
+atrDA  = 1.4 * ta.sma(math.abs(close - close[1]), 20)   // paper's ATR proxy
+upBand = math.min(ta.highest(high, 20), ta.ema(close, 20) + 2 * atrDA)
+atrDA40 = 1.4 * ta.sma(math.abs(close - close[1]), 40)
+dnBand = math.max(ta.lowest(low, 40), ta.ema(close, 40) - 2 * atrDA40)
+var bool  daLong = false
+var float daStop = na
+if not daLong and close >= upBand[1]
+    daLong := true
+    daStop := dnBand
+else if daLong
+    daStop := na(daStop) ? dnBand : math.max(daStop, nz(dnBand, daStop))
+    if not na(daStop[1]) and close < daStop[1]
+        daLong := false
+        daStop := na
+
+// ───────── relative strength vs the index [M ch 17] (non-repainting request)
+idxClose = request.security(idxSym, timeframe.period, close[1], lookahead = barmerge.lookahead_on, ignore_invalid_symbol = true)
+rsLine   = idxClose > 0 ? close[1] / idxClose : na
+rs13 = rsLine / rsLine[63] - 1
+rs26 = rsLine / rsLine[126] - 1
+rsRead = na(rs13) ? "n/a" : rs13 > 0 and rs26 > 0 ? "Leader" : rs13 < 0 and rs26 < 0 ? "Laggard" : "Mixed"
+
+// ───────── support / resistance from confirmed swing points (5 bars each side)
+ph = ta.pivothigh(high, 5, 5)
+pl = ta.pivotlow(low, 5, 5)
+var array<float> swingHi = array.new<float>()
+var array<float> swingLo = array.new<float>()
+if not na(ph)
+    swingHi.push(ph)
+    if swingHi.size() > 60
+        swingHi.shift()
+if not na(pl)
+    swingLo.push(pl)
+    if swingLo.size() > 60
+        swingLo.shift()
+nearestAbove(array<float> a, float px) =>
+    float best = na
+    for v in a
+        if v > px and (na(best) or v < best)
+            best := v
+    best
+nearestBelow(array<float> a, float px) =>
+    float best = na
+    for v in a
+        if v < px and (na(best) or v > best)
+            best := v
+    best
+// unfilled gap edges also act as levels [PS, M ch 4]
+
+// ───────── gaps: true gaps (low > prior high / high < prior low) [M ch 4]
+type Gap
+    box   bx
+    float top
+    float bot
+    bool  isUp
+    int   bar0
+
+var array<Gap> gaps = array.new<Gap>()
+gapUpSize = (low - high[1]) / close[1] * 100
+gapDnSize = (low[1] - high) / close[1] * 100
+newUp = barstate.isconfirmed and low > high[1] and gapUpSize >= gapMinPct
+newDn = barstate.isconfirmed and high < low[1] and gapDnSize >= gapMinPct
+
+gapType(bool up) =>
+    hh20 = ta.highest(high, 20)[1]
+    ll20 = ta.lowest(low, 20)[1]
+    st   = stretch[1]
+    up ? (high > hh20 and volRatio >= 1.5 ? "Breakaway" : st > 3 ? "Exhaustion" : close[1] > sma50[1] ? "Runaway" : "Common") : (low < ll20 and volRatio >= 1.5 ? "Breakaway" : st < -3 ? "Exhaustion" : close[1] < sma50[1] ? "Runaway" : "Common")
+upType = gapType(true)
+dnType = gapType(false)
+
+if newUp or newDn
+    float t = newUp ? low : low[1]
+    float b = newUp ? high[1] : high
+    box bx = showGaps ? box.new(bar_index - 1, t, bar_index + 5, b, border_color = na, bgcolor = color.new(newUp ? color.teal : color.red, 80), text = (newUp ? "▲ " + upType : "▼ " + dnType), text_size = size.tiny, text_color = color.new(chart.fg_color, 30), text_halign = text.align_left) : na
+    gaps.push(Gap.new(bx, t, b, newUp, bar_index))
+    if gaps.size() > maxGaps
+        Gap old = gaps.shift()
+        if showGaps
+            old.bx.delete()
+
+// extend open gaps; mark filled when price trades back through the far edge
+int openUp = 0
+int openDn = 0
+float nearGapRes = na
+float nearGapSup = na
+if gaps.size() > 0
+    for i = gaps.size() - 1 to 0
+        Gap g = gaps.get(i)
+        bool filled = g.isUp ? low <= g.bot : high >= g.top
+        if filled and bar_index > g.bar0
+            if showGaps
+                g.bx.set_right(bar_index)
+                g.bx.set_bgcolor(color.new(color.gray, 92))
+            gaps.remove(i)
+        else
+            if showGaps
+                g.bx.set_right(bar_index + 5)
+            if g.isUp
+                openUp += 1
+                if g.top < close and (na(nearGapSup) or g.top > nearGapSup)
+                    nearGapSup := g.top
+            else
+                openDn += 1
+                if g.bot > close and (na(nearGapRes) or g.bot < nearGapRes)
+                    nearGapRes := g.bot
+
+// ───────── plots (keep plot count low)
+plot(showMAs ? sma20 : na, "SMA 20", color.new(color.orange, 20), 1)
+plot(showMAs ? sma50 : na, "SMA 50", color.new(color.blue, 20), 1)
+plot(showMAs ? sma200 : na, "SMA 200", color.new(color.purple, 0), 2)
+plot(showDA and daLong ? daStop : na, "DA trailing stop", color.new(color.green, 0), 1, plot.style_linebr)
+plotshape(daLong and not daLong[1], "DA trend entry", shape.triangleup, location.belowbar, color.green, size = size.tiny)
+plotshape(not daLong and daLong[1], "DA trend exit", shape.xcross, location.abovebar, color.red, size = size.tiny)
+
+// ───────── table (built on last bar only)
+f(x, d) => na(x) ? "–" : str.tostring(x, d)
+pos = tblPos == "top_right" ? position.top_right : tblPos == "bottom_right" ? position.bottom_right : tblPos == "top_left" ? position.top_left : position.bottom_left
+if barstate.islast
+    var table tb = table.new(pos, 2, 12, bgcolor = color.new(chart.bg_color, 10), frame_color = color.new(chart.fg_color, 70), frame_width = 1, border_width = 0)
+    res = nearestAbove(swingHi, close)
+    sup = nearestBelow(swingLo, close)
+    stopPx = math.min(na(sup) ? close - 2 * atr14 : sup, close - 2 * atr14)
+    trendTxt = trendUp ? "Up (above rising 200)" : trendDn ? "Down (below falling 200)" : "Sideways / mixed"
+    stretchTxt = (stretch > 2 or streak >= 4) ? "Stretched up — don't chase" : (stretch < -2 or streak <= -4) ? "Stretched down" : "Normal"
+    volTxt = na(volRatio) ? "–" : volRatio >= 1.5 ? "High (" + f(volRatio, "#.#") + "x)" : volRatio < 0.7 ? "Light (" + f(volRatio, "#.#") + "x)" : "Normal (" + f(volRatio, "#.#") + "x)"
+    rows = array.from("Regime (ADX " + f(adx, "#") + ")", "Primary trend", "Rel. strength vs TSX", "RSI 14 (" + f(rsi14, "#") + ")", "MACD", "Stretch", "Volume vs 10d", "DA trend state", "Resistance / gap above", "Support / gap below", "Tech stop", "Gap odds ▲ / ▼")
+    vals = array.from(regime, trendTxt, rsRead + " (13w " + f(rs13 * 100, "#.#") + "%)", rsiRead, macdL > macdS ? (macdL > 0 ? "Bull, above 0" : "Bull cross, below 0") : (macdL < 0 ? "Bear, below 0" : "Bear cross, above 0"), stretchTxt + " · " + f(stretch, "#.#") + " ATR · streak " + str.tostring(streak), volTxt, daLong ? "In trend · stop " + f(daStop, "#.##") : "Out", f(res, "#.##") + " / " + f(nearGapRes, "#.##"), f(sup, "#.##") + " / " + f(nearGapSup, "#.##"), f(stopPx, "#.##") + " (" + f((stopPx / close - 1) * 100, "#.#") + "%)", oddsUp + " | " + oddsDn)
+    for i = 0 to rows.size() - 1
+        tb.cell(0, i, rows.get(i), text_color = chart.fg_color, text_size = size.small, text_halign = text.align_left)
+        tb.cell(1, i, vals.get(i), text_color = chart.fg_color, text_size = size.small, text_halign = text.align_left)
+
+// ───────── alerts (bar close only)
+if newUp
+    alert(syminfo.ticker + " gap UP " + str.tostring(gapUpSize, "#.#") + "% (" + upType + ")", alert.freq_once_per_bar_close)
+if newDn
+    alert(syminfo.ticker + " gap DOWN " + str.tostring(gapDnSize, "#.#") + "% (" + dnType + ")", alert.freq_once_per_bar_close)
+if daLong and not daLong[1]
+    alert(syminfo.ticker + " Dow Award trend entry; stop " + str.tostring(daStop, "#.##"), alert.freq_once_per_bar_close)
+if not daLong and daLong[1]
+    alert(syminfo.ticker + " Dow Award trend exit", alert.freq_once_per_bar_close)

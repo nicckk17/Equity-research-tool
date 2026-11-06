@@ -1,0 +1,529 @@
+{
+  "company": {
+    "ticker": "GIL.TO",
+    "name": "Gildan Activewear",
+    "sector": "default",
+    "industry": null,
+    "currency": "CAD",
+    "price": 59.57,
+    "price_basis": "latest close Oct 2026",
+    "market_cap": null,
+    "eps_ttm": 0.5,
+    "eps_forward": 7.3999999999999995,
+    "book_value_per_share": 25.59,
+    "dps_ttm": 1.37,
+    "pe_trailing": 119.14,
+    "pe_forward": 8.05,
+    "ev_ebitda": 10.77,
+    "pb": 2.3278624462680737,
+    "net_margin": 0.0128,
+    "operating_margin": 0.2013,
+    "roe": 0.0868,
+    "debt_to_equity": 1.48,
+    "fcf_yield": 0.068,
+    "revenue_cagr_3y": 0.03756311491536568,
+    "eps_cagr_3y": -0.03904752602987749,
+    "revenue_history": {
+      "FY2022": 3240,
+      "FY2023": 3196,
+      "FY2024": 3271,
+      "FY2025": 3619
+    },
+    "eps_history": {
+      "FY2022": 2.93,
+      "FY2023": 3.03,
+      "FY2024": 2.46,
+      "FY2025": 2.6
+    },
+    "beta": 1.14,
+    "sharpe": 0.3175180738148777,
+    "max_drawdown": -0.35073662183653986,
+    "dividend_yield": 0.022998153432936045,
+    "payout_ratio": 2.6298,
+    "cet1_ratio": null,
+    "analyst": {
+      "rating": "Buy",
+      "count": 13,
+      "target_mean": 103.02,
+      "target_low": 78.86,
+      "target_high": 132.15,
+      "as_of": "2026-08-04",
+      "source": "stockanalysis.com forecast page"
+    },
+    "monthly_prices": {
+      "2021-10": 41.094741,
+      "2021-11": 46.95222,
+      "2021-12": 48.657924,
+      "2022-01": 45.908837,
+      "2022-02": 45.146714,
+      "2022-03": 42.742903,
+      "2022-04": 39.680071,
+      "2022-05": 36.525305,
+      "2022-06": 33.967434,
+      "2022-07": 34.407498,
+      "2022-08": 35.804419,
+      "2022-09": 35.998007,
+      "2022-10": 39.630072,
+      "2022-11": 36.122645,
+      "2022-12": 34.388387,
+      "2023-01": 38.691572,
+      "2023-02": 40.212526,
+      "2023-03": 41.890195,
+      "2023-04": 41.162481,
+      "2023-05": 34.759273,
+      "2023-06": 40.101798,
+      "2023-07": 38.505613,
+      "2023-08": 38.08336,
+      "2023-09": 35.976018,
+      "2023-10": 37.223413,
+      "2023-11": 46.659688,
+      "2023-12": 41.625153,
+      "2024-01": 42.176102,
+      "2024-02": 44.892851,
+      "2024-03": 48.042759,
+      "2024-04": 45.605739,
+      "2024-05": 50.115493,
+      "2024-06": 49.8752,
+      "2024-07": 54.037073,
+      "2024-08": 59.320473,
+      "2024-09": 61.483903,
+      "2024-10": 65.810763,
+      "2024-11": 67.503611,
+      "2024-12": 65.612346,
+      "2025-01": 72.692466,
+      "2025-02": 75.79608,
+      "2025-03": 61.996838,
+      "2025-04": 61.909135,
+      "2025-05": 62.550399,
+      "2025-06": 65.682813,
+      "2025-07": 68.511775,
+      "2025-08": 73.7012,
+      "2025-09": 79.028761,
+      "2025-10": 80.395054,
+      "2025-11": 79.137819,
+      "2025-12": 84.66434,
+      "2026-01": 87.309176,
+      "2026-02": 91.750131,
+      "2026-03": 76.779917,
+      "2026-04": 83.549077,
+      "2026-05": 83.742567,
+      "2026-06": 72.800576,
+      "2026-07": 77.261006,
+      "2026-08": 72.29,
+      "2026-09": 60.63,
+      "2026-10": 59.57
+    },
+    "notes": [
+      "Reports in USD, trades in CAD; FY2025 EPS and TTM margins depressed by HanesBrands acquisition costs",
+      "Analyst targets last updated Aug 4, 2026",
+      "Max drawdown and Sharpe from month-end closes (a daily-price drawdown would be somewhat deeper)",
+      "Beta: stockanalysis.com published 5Y beta"
+    ],
+    "fetched_at": "web data collected 2026-10-16"
+  },
+  "peers": [
+    "ATZ.TO",
+    "LULU",
+    "ANF",
+    "URBN",
+    "GOOS.TO"
+  ],
+  "peer_names": {
+    "ATZ.TO": "Aritzia Inc.",
+    "LULU": "lululemon athletica",
+    "ANF": "Abercrombie & Fitch",
+    "URBN": "Urban Outfitters",
+    "GOOS.TO": "Canada Goose Holdings"
+  },
+  "sector_model": "default",
+  "weights": {
+    "valuation": 0.25,
+    "profitability": 0.2,
+    "balance_sheet": 0.2,
+    "growth": 0.15,
+    "risk": 0.1,
+    "dividend": 0.1
+  },
+  "params": {
+    "valuation": {
+      "label": "Valuation vs peers",
+      "weight": 0.25,
+      "score": 26.666666666666668,
+      "contribution": 6.666666666666667,
+      "metrics": [
+        {
+          "metric": "pe_trailing",
+          "direction": "lower",
+          "value": 119.14,
+          "peers": {
+            "ATZ.TO": 30.37373737373737,
+            "LULU": 8.108837970540097,
+            "ANF": 13.068787618228718,
+            "URBN": 13.763779527559057,
+            "GOOS.TO": 20.24137931034483
+          },
+          "peer_median": 13.763779527559057,
+          "beats": 0.0,
+          "n_peers": 5,
+          "score": 0.0
+        },
+        {
+          "metric": "ev_ebitda",
+          "direction": "lower",
+          "value": 10.77,
+          "peers": {
+            "ATZ.TO": 20.93,
+            "LULU": 4.92,
+            "ANF": 7.31,
+            "URBN": 10.03,
+            "GOOS.TO": 5.27
+          },
+          "peer_median": 7.31,
+          "beats": 1.0,
+          "n_peers": 5,
+          "score": 20.0
+        },
+        {
+          "metric": "pb",
+          "direction": "lower",
+          "value": 2.3278624462680737,
+          "peers": {
+            "ATZ.TO": 12.115229653505237,
+            "LULU": 2.30979020979021,
+            "ANF": 4.761591478696742,
+            "URBN": 2.6230492196878754,
+            "GOOS.TO": 2.1821561338289963
+          },
+          "peer_median": 2.6230492196878754,
+          "beats": 3.0,
+          "n_peers": 5,
+          "score": 60.0
+        }
+      ]
+    },
+    "profitability": {
+      "label": "Profitability",
+      "weight": 0.2,
+      "score": 33.333333333333336,
+      "contribution": 6.666666666666668,
+      "metrics": [
+        {
+          "metric": "net_margin",
+          "direction": "higher",
+          "value": 0.0128,
+          "peers": {
+            "ATZ.TO": 0.1145,
+            "LULU": 0.1278,
+            "ANF": 0.1004,
+            "URBN": 0.0879,
+            "GOOS.TO": 0.037
+          },
+          "peer_median": 0.1004,
+          "beats": 0.0,
+          "n_peers": 5,
+          "score": 0.0
+        },
+        {
+          "metric": "operating_margin",
+          "direction": "higher",
+          "value": 0.2013,
+          "peers": {
+            "ATZ.TO": 0.1492,
+            "LULU": 0.1662,
+            "ANF": 0.1408,
+            "URBN": 0.0974,
+            "GOOS.TO": 0.1323
+          },
+          "peer_median": 0.1408,
+          "beats": 5.0,
+          "n_peers": 5,
+          "score": 100.0
+        },
+        {
+          "metric": "roe",
+          "direction": "higher",
+          "value": 0.0868,
+          "peers": {
+            "ATZ.TO": 0.3591,
+            "LULU": 0.309,
+            "ANF": 0.4061,
+            "URBN": 0.2094,
+            "GOOS.TO": 0.1218
+          },
+          "peer_median": 0.309,
+          "beats": 0.0,
+          "n_peers": 5,
+          "score": 0.0
+        }
+      ]
+    },
+    "balance_sheet": {
+      "label": "Balance sheet & cash flow",
+      "weight": 0.2,
+      "score": 30.0,
+      "contribution": 6.0,
+      "metrics": [
+        {
+          "metric": "debt_to_equity",
+          "direction": "lower",
+          "value": 1.48,
+          "peers": {
+            "ATZ.TO": 0.76,
+            "LULU": 0.45,
+            "ANF": 0.94,
+            "URBN": 0.43,
+            "GOOS.TO": 1.53
+          },
+          "peer_median": 0.76,
+          "beats": 1.0,
+          "n_peers": 5,
+          "score": 20.0
+        },
+        {
+          "metric": "fcf_yield",
+          "direction": "higher",
+          "value": 0.068,
+          "peers": {
+            "ATZ.TO": 0.0297182573994014,
+            "LULU": 0.1235,
+            "ANF": 0.08780503980525035,
+            "URBN": 0.0394,
+            "GOOS.TO": 0.0855
+          },
+          "peer_median": 0.0855,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        }
+      ]
+    },
+    "growth": {
+      "label": "Growth",
+      "weight": 0.15,
+      "score": 10.0,
+      "contribution": 1.5,
+      "metrics": [
+        {
+          "metric": "revenue_cagr_3y",
+          "direction": "higher",
+          "value": 0.03756311491536568,
+          "peers": {
+            "ATZ.TO": 0.190149064425144,
+            "LULU": 0.11033828001023172,
+            "ANF": 0.12504868398087354,
+            "URBN": 0.08738037300289214,
+            "GOOS.TO": 0.0788082492154889
+          },
+          "peer_median": 0.11033828001023172,
+          "beats": 0.0,
+          "n_peers": 5,
+          "score": 0.0
+        },
+        {
+          "metric": "eps_cagr_3y",
+          "direction": "higher",
+          "value": -0.03904752602987749,
+          "peers": {
+            "ATZ.TO": 0.25214356127864423,
+            "LULU": 0.2567696584205337,
+            "ANF": 4.9363645104709315,
+            "URBN": 0.43846908227238557,
+            "GOOS.TO": -0.30663872564936523
+          },
+          "peer_median": 0.2567696584205337,
+          "beats": 1.0,
+          "n_peers": 5,
+          "score": 20.0
+        }
+      ]
+    },
+    "risk": {
+      "label": "Risk",
+      "weight": 0.1,
+      "score": 66.66666666666667,
+      "contribution": 6.666666666666668,
+      "metrics": [
+        {
+          "metric": "beta",
+          "direction": "lower",
+          "value": 1.14,
+          "peers": {
+            "ATZ.TO": 1.73,
+            "LULU": 0.92,
+            "ANF": 1.01,
+            "URBN": 1.24,
+            "GOOS.TO": 1.72
+          },
+          "peer_median": 1.24,
+          "beats": 3.0,
+          "n_peers": 5,
+          "score": 60.0
+        },
+        {
+          "metric": "sharpe",
+          "direction": "higher",
+          "value": 0.3175180738148777,
+          "peers": {
+            "ATZ.TO": 0.6663043894026383,
+            "LULU": -0.61876714028516,
+            "ANF": 0.6964171876715829,
+            "URBN": 0.6546602363290042,
+            "GOOS.TO": -0.43516043291836515
+          },
+          "peer_median": 0.6546602363290042,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        },
+        {
+          "metric": "max_drawdown",
+          "direction": "higher",
+          "value": -0.35073662183653986,
+          "peers": {
+            "ATZ.TO": -0.6342207902323216,
+            "LULU": -0.8118680201060064,
+            "ANF": -0.6360647445624683,
+            "URBN": -0.4155966176010022,
+            "GOOS.TO": -0.8051606108478147
+          },
+          "peer_median": -0.6360647445624683,
+          "beats": 5.0,
+          "n_peers": 5,
+          "score": 100.0
+        }
+      ]
+    },
+    "dividend": {
+      "label": "Dividend",
+      "weight": 0.1,
+      "score": 100.0,
+      "contribution": 10.0,
+      "metrics": [
+        {
+          "metric": "dividend_yield",
+          "direction": "higher",
+          "value": 0.022998153432936045,
+          "peers": {
+            "ATZ.TO": 0.0,
+            "LULU": 0.0,
+            "ANF": 0.0,
+            "URBN": 0.0,
+            "GOOS.TO": 0.0
+          },
+          "peer_median": 0.0,
+          "beats": 5.0,
+          "n_peers": 5,
+          "score": 100.0
+        },
+        {
+          "metric": "payout_ratio",
+          "direction": "lower",
+          "value": 2.6298,
+          "peers": {
+            "ATZ.TO": null,
+            "LULU": null,
+            "ANF": null,
+            "URBN": null,
+            "GOOS.TO": null
+          },
+          "peer_median": null,
+          "beats": 0,
+          "n_peers": 0,
+          "score": null
+        }
+      ]
+    }
+  },
+  "weighted_score": 37.5,
+  "call": "HOLD",
+  "thresholds": {
+    "buy_at_or_above": 70,
+    "hold_at_or_above": 37.5
+  },
+  "target": {
+    "peer_pes_used": {
+      "ATZ.TO": {
+        "pe": 29.404550484094056,
+        "basis": "forward"
+      },
+      "LULU": {
+        "pe": 11.890000000000002,
+        "basis": "forward"
+      },
+      "ANF": {
+        "pe": 12.131057651844579,
+        "basis": "forward"
+      },
+      "URBN": {
+        "pe": 13.4,
+        "basis": "forward"
+      },
+      "GOOS.TO": {
+        "pe": 12.66,
+        "basis": "forward"
+      }
+    },
+    "peer_pes_dropped": {},
+    "price": 59.57,
+    "forward_eps": 7.3999999999999995,
+    "peer_avg_pe": 15.897121627187728,
+    "target": 117.63870004118918,
+    "upside": 0.9747977176630718,
+    "pb_cross_check": {
+      "peer_avg_pb": 4.798363339101812,
+      "bvps": 25.59,
+      "target": 122.79011784761536
+    }
+  },
+  "downside": {
+    "max_drawdown": -0.35073662183653986,
+    "price_at_max_drawdown": 38.67661943719732
+  },
+  "analyst": {
+    "rating": "Buy",
+    "count": 13,
+    "target_mean": 103.02,
+    "target_low": 78.86,
+    "target_high": 132.15,
+    "as_of": "2026-08-04",
+    "source": "stockanalysis.com forecast page",
+    "upside": 0.7293939902635553,
+    "tool_vs_analyst": 0.1419015729100095
+  },
+  "drawdown_context": {
+    "stock_drawdown": -0.35073662183653986,
+    "peak": "2026-02",
+    "trough": "2026-10",
+    "peers": {
+      "ATZ.TO": 0.2448253022023512,
+      "LULU": -0.4648701193497866,
+      "ANF": 0.5540899795501024,
+      "URBN": 0.3202416918429003,
+      "GOOS.TO": -0.30119047619047623
+    },
+    "peer_avg_same_window": 0.07061927561101822,
+    "sector_members": [
+      "ATZ.TO",
+      "LULU",
+      "ANF",
+      "URBN",
+      "GOOS.TO"
+    ],
+    "sector_same_window": 0.30125223398414747,
+    "sector_max_drawdown": -0.4535365060838106,
+    "sector_peak": "2021-11",
+    "sector_trough": "2022-06",
+    "excess_vs_sector": -0.6519888558206873
+  },
+  "flags": [
+    "Its worst fall was more than 10 points deeper than the sector's over the same months: stock-specific risk.",
+    "Reports in USD, trades in CAD; FY2025 EPS and TTM margins depressed by HanesBrands acquisition costs",
+    "Analyst targets last updated Aug 4, 2026",
+    "Max drawdown and Sharpe from month-end closes (a daily-price drawdown would be somewhat deeper)",
+    "Beta: stockanalysis.com published 5Y beta"
+  ],
+  "sector_rank": 5,
+  "sector_size": 6,
+  "rationale": "Gildan Activewear scores 38% against ATZ, LULU, ANF, URBN, GOOS and ranks #5 of 6 in its sector, which maps to a HOLD. Its strongest area is dividend (100%), led by Dividend yield of 2.3% vs a peer median of 0.0%. The weakest is growth (10%), dragged down by 3-yr revenue growth (CAGR) of 3.8% vs a peer median of 11.0%. Applying the peer average forward P/E of 15.9x to forward EPS of $7.40 gives a target of $117.64, +97.5% from $59.57. Analysts' consensus target is $103.02 (+72.9%), with 13 analysts rating it Buy. The downside case is a repeat of its five-year max drawdown of -35.1%, roughly $38.68. Over the same months the sector index moved +30.1%, so most of that fall was company-specific. Beta of 1.14 means it has moved more than the market.",
+  "rationale_source": "template (every number traceable to the scorecard)"
+}

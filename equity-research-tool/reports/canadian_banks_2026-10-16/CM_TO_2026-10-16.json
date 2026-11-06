@@ -1,0 +1,476 @@
+{
+  "company": {
+    "ticker": "CM.TO",
+    "name": "Canadian Imperial Bank of Commerce",
+    "sector": "bank",
+    "industry": "Banks - Diversified",
+    "currency": "CAD",
+    "price": 159.4,
+    "price_basis": "latest close Oct 2026",
+    "market_cap": null,
+    "eps_ttm": 10.42,
+    "eps_forward": 11.140300644237652,
+    "book_value_per_share": 72.14,
+    "dps_ttm": 4.28,
+    "pe_trailing": 15.297504798464493,
+    "pe_forward": 14.308410974747801,
+    "ev_ebitda": null,
+    "pb": 2.2095924591072915,
+    "net_margin": 0.3374,
+    "operating_margin": 0.4204,
+    "roe": 0.1558,
+    "debt_to_equity": null,
+    "fcf_yield": null,
+    "revenue_cagr_3y": 0.08845128374261568,
+    "eps_cagr_3y": 0.08659604465834025,
+    "revenue_history": {
+      "FY2022": 20776,
+      "FY2023": 21322,
+      "FY2024": 23605,
+      "FY2025": 26791
+    },
+    "eps_history": {
+      "FY2022": 6.68,
+      "FY2023": 5.17,
+      "FY2024": 7.28,
+      "FY2025": 8.57
+    },
+    "beta": 1.24,
+    "sharpe": 0.908903281027206,
+    "max_drawdown": -0.3264690134691165,
+    "dividend_yield": 0.026850690087829362,
+    "payout_ratio": 0.4258,
+    "cet1_ratio": 0.134,
+    "analyst": {
+      "rating": "Hold",
+      "count": 15,
+      "target_mean": 170.5,
+      "target_low": 147,
+      "target_high": 186,
+      "as_of": "2026-09-03",
+      "source": "stockanalysis.com forecast page"
+    },
+    "monthly_prices": {
+      "2021-10": 59.449212,
+      "2021-11": 56.393022,
+      "2021-12": 59.012608,
+      "2022-01": 63.883299,
+      "2022-02": 64.207478,
+      "2022-03": 61.355615,
+      "2022-04": 57.421578,
+      "2022-05": 56.265221,
+      "2022-06": 51.220271,
+      "2022-07": 53.080294,
+      "2022-08": 50.892514,
+      "2022-09": 50.220836,
+      "2022-10": 51.392047,
+      "2022-11": 53.817532,
+      "2022-12": 46.2044,
+      "2023-01": 51.240739,
+      "2023-02": 52.641128,
+      "2023-03": 49.083503,
+      "2023-04": 48.64671,
+      "2023-05": 47.935852,
+      "2023-06": 49.200919,
+      "2023-07": 50.523151,
+      "2023-08": 46.573855,
+      "2023-09": 46.358074,
+      "2023-10": 43.245726,
+      "2023-11": 49.603051,
+      "2023-12": 57.21375,
+      "2024-01": 54.487577,
+      "2024-02": 57.590392,
+      "2024-03": 62.402695,
+      "2024-04": 58.395182,
+      "2024-05": 61.412176,
+      "2024-06": 59.924703,
+      "2024-07": 65.774385,
+      "2024-08": 72.55449,
+      "2024-09": 77.25266,
+      "2024-10": 81.117156,
+      "2024-11": 84.627794,
+      "2024-12": 85.571406,
+      "2025-01": 86.154869,
+      "2025-02": 82.503521,
+      "2025-03": 77.091248,
+      "2025-04": 82.805238,
+      "2025-05": 88.976347,
+      "2025-06": 92.989913,
+      "2025-07": 95.269927,
+      "2025-08": 102.061865,
+      "2025-09": 107.918457,
+      "2025-10": 112.77047,
+      "2025-11": 117.253729,
+      "2025-12": 121.776328,
+      "2026-01": 123.156257,
+      "2026-02": 134.851404,
+      "2026-03": 130.093249,
+      "2026-04": 149.561846,
+      "2026-05": 148.496155,
+      "2026-06": 162.23269,
+      "2026-07": 164.934582,
+      "2026-08": 156.262702,
+      "2026-09": 156.73,
+      "2026-10": 159.4
+    },
+    "notes": [
+      "Max drawdown and Sharpe from month-end closes (a daily-price drawdown would be somewhat deeper)",
+      "Beta: stockanalysis.com published 5Y beta"
+    ],
+    "fetched_at": "web data collected 2026-10-16"
+  },
+  "peers": [
+    "RY.TO",
+    "TD.TO",
+    "BNS.TO",
+    "BMO.TO",
+    "NA.TO"
+  ],
+  "peer_names": {
+    "RY.TO": "Royal Bank of Canada",
+    "TD.TO": "Toronto-Dominion Bank",
+    "BNS.TO": "Bank of Nova Scotia",
+    "BMO.TO": "Bank of Montreal",
+    "NA.TO": "National Bank of Canada"
+  },
+  "sector_model": "bank",
+  "weights": {
+    "valuation": 0.25,
+    "profitability": 0.2,
+    "balance_sheet": 0.2,
+    "growth": 0.15,
+    "risk": 0.1,
+    "dividend": 0.1
+  },
+  "params": {
+    "valuation": {
+      "label": "Valuation vs peers",
+      "weight": 0.25,
+      "score": 80.0,
+      "contribution": 20.0,
+      "metrics": [
+        {
+          "metric": "pe_trailing",
+          "direction": "lower",
+          "value": 15.297504798464493,
+          "peers": {
+            "RY.TO": 17.592055485498108,
+            "TD.TO": 18.262083780880772,
+            "BNS.TO": 16.869451697127936,
+            "BMO.TO": 19.186634066829665,
+            "NA.TO": 16.318828451882844
+          },
+          "peer_median": 17.592055485498108,
+          "beats": 5.0,
+          "n_peers": 5,
+          "score": 100.0
+        },
+        {
+          "metric": "pb",
+          "direction": "lower",
+          "value": 2.2095924591072915,
+          "peers": {
+            "RY.TO": 2.8844205520521036,
+            "TD.TO": 2.248346998148638,
+            "BNS.TO": 1.7665071770334926,
+            "BMO.TO": 1.931413569611945,
+            "NA.TO": 2.2625594616544844
+          },
+          "peer_median": 2.248346998148638,
+          "beats": 3.0,
+          "n_peers": 5,
+          "score": 60.0
+        }
+      ]
+    },
+    "profitability": {
+      "label": "Profitability",
+      "weight": 0.2,
+      "score": 80.0,
+      "contribution": 16.0,
+      "metrics": [
+        {
+          "metric": "roe",
+          "direction": "higher",
+          "value": 0.1558,
+          "peers": {
+            "RY.TO": 0.1621,
+            "TD.TO": 0.1283,
+            "BNS.TO": 0.1146,
+            "BMO.TO": 0.1057,
+            "NA.TO": 0.1427
+          },
+          "peer_median": 0.1283,
+          "beats": 4.0,
+          "n_peers": 5,
+          "score": 80.0
+        },
+        {
+          "metric": "net_margin",
+          "direction": "higher",
+          "value": 0.3374,
+          "peers": {
+            "RY.TO": 0.3387,
+            "TD.TO": 0.2662,
+            "BNS.TO": 0.2843,
+            "BMO.TO": 0.2566,
+            "NA.TO": 0.3328
+          },
+          "peer_median": 0.2843,
+          "beats": 4.0,
+          "n_peers": 5,
+          "score": 80.0
+        }
+      ]
+    },
+    "balance_sheet": {
+      "label": "Balance sheet & cash flow",
+      "weight": 0.2,
+      "score": 40.0,
+      "contribution": 8.0,
+      "metrics": [
+        {
+          "metric": "cet1_ratio",
+          "direction": "higher",
+          "value": 0.134,
+          "peers": {
+            "RY.TO": 0.135,
+            "TD.TO": 0.143,
+            "BNS.TO": 0.131,
+            "BMO.TO": 0.13,
+            "NA.TO": 0.135
+          },
+          "peer_median": 0.135,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        }
+      ]
+    },
+    "growth": {
+      "label": "Growth",
+      "weight": 0.15,
+      "score": 80.0,
+      "contribution": 12.0,
+      "metrics": [
+        {
+          "metric": "revenue_cagr_3y",
+          "direction": "higher",
+          "value": 0.08845128374261568,
+          "peers": {
+            "RY.TO": 0.08670902677446124,
+            "TD.TO": 0.0984266527839055,
+            "BNS.TO": 0.032171785302125944,
+            "BMO.TO": -0.007282568644362053,
+            "NA.TO": 0.10231855342913532
+          },
+          "peer_median": 0.08670902677446124,
+          "beats": 3.0,
+          "n_peers": 5,
+          "score": 60.0
+        },
+        {
+          "metric": "eps_cagr_3y",
+          "direction": "higher",
+          "value": 0.08659604465834025,
+          "peers": {
+            "RY.TO": 0.08354343081871107,
+            "TD.TO": 0.06873316099306681,
+            "BNS.TO": -0.10915346141538573,
+            "BMO.TO": -0.16975855329793843,
+            "NA.TO": 0.015707581842261176
+          },
+          "peer_median": 0.015707581842261176,
+          "beats": 5.0,
+          "n_peers": 5,
+          "score": 100.0
+        }
+      ]
+    },
+    "risk": {
+      "label": "Risk",
+      "weight": 0.1,
+      "score": 25.0,
+      "contribution": 2.5,
+      "metrics": [
+        {
+          "metric": "beta",
+          "direction": "lower",
+          "value": 1.24,
+          "peers": {
+            "RY.TO": 0.91,
+            "TD.TO": 0.87,
+            "BNS.TO": 1.19,
+            "BMO.TO": 1.12,
+            "NA.TO": 1.17
+          },
+          "peer_median": 1.12,
+          "beats": 0.0,
+          "n_peers": 5,
+          "score": 0.0
+        },
+        {
+          "metric": "sharpe",
+          "direction": "higher",
+          "value": 0.908903281027206,
+          "peers": {
+            "RY.TO": 1.015136623084565,
+            "TD.TO": 0.8877897117749187,
+            "BNS.TO": 0.7238798637865425,
+            "BMO.TO": 0.7337919171803309,
+            "NA.TO": null
+          },
+          "peer_median": 0.8107908144776248,
+          "beats": 3.0,
+          "n_peers": 4,
+          "score": 75.0
+        },
+        {
+          "metric": "max_drawdown",
+          "direction": "higher",
+          "value": -0.3264690134691165,
+          "peers": {
+            "RY.TO": -0.17901137497755115,
+            "TD.TO": -0.20804704397339202,
+            "BNS.TO": -0.32101993463003275,
+            "BMO.TO": -0.22847665241465187,
+            "NA.TO": null
+          },
+          "peer_median": -0.21826184819402195,
+          "beats": 0.0,
+          "n_peers": 4,
+          "score": 0.0
+        }
+      ]
+    },
+    "dividend": {
+      "label": "Dividend",
+      "weight": 0.1,
+      "score": 60.0,
+      "contribution": 6.0,
+      "metrics": [
+        {
+          "metric": "dividend_yield",
+          "direction": "higher",
+          "value": 0.026850690087829362,
+          "peers": {
+            "RY.TO": 0.02523207053510627,
+            "TD.TO": 0.026349841195153514,
+            "BNS.TO": 0.03528865500696486,
+            "BMO.TO": 0.02905445586611163,
+            "NA.TO": 0.02707553458796985
+          },
+          "peer_median": 0.02707553458796985,
+          "beats": 2.0,
+          "n_peers": 5,
+          "score": 40.0
+        },
+        {
+          "metric": "payout_ratio",
+          "direction": "lower",
+          "value": 0.4258,
+          "peers": {
+            "RY.TO": 0.4148,
+            "TD.TO": 0.4821,
+            "BNS.TO": 0.5956,
+            "BMO.TO": 0.5509,
+            "NA.TO": 0.4283
+          },
+          "peer_median": 0.4821,
+          "beats": 4.0,
+          "n_peers": 5,
+          "score": 80.0
+        }
+      ]
+    }
+  },
+  "weighted_score": 64.5,
+  "call": "HOLD",
+  "thresholds": {
+    "buy_at_or_above": 70,
+    "hold_at_or_above": 37.5
+  },
+  "target": {
+    "peer_pes_used": {
+      "RY.TO": {
+        "pe": 16.168377351530797,
+        "basis": "forward"
+      },
+      "TD.TO": {
+        "pe": 15.566328434802893,
+        "basis": "forward"
+      },
+      "BNS.TO": {
+        "pe": 13.921262634365473,
+        "basis": "forward"
+      },
+      "BMO.TO": {
+        "pe": 14.759971204188481,
+        "basis": "forward"
+      },
+      "NA.TO": {
+        "pe": 14.199999999999998,
+        "basis": "forward"
+      }
+    },
+    "peer_pes_dropped": {},
+    "price": 159.4,
+    "forward_eps": 11.140300644237652,
+    "peer_avg_pe": 14.923187924977528,
+    "target": 166.2488000547067,
+    "upside": 0.042966123304307935,
+    "pb_cross_check": {
+      "peer_avg_pb": 2.218649551700133,
+      "bvps": 72.14,
+      "target": 160.0533786596476
+    }
+  },
+  "downside": {
+    "max_drawdown": -0.3264690134691165,
+    "price_at_max_drawdown": 107.36083925302283
+  },
+  "analyst": {
+    "rating": "Hold",
+    "count": 15,
+    "target_mean": 170.5,
+    "target_low": 147,
+    "target_high": 186,
+    "as_of": "2026-09-03",
+    "source": "stockanalysis.com forecast page",
+    "upside": 0.06963613550815562,
+    "tool_vs_analyst": -0.024933724019315595
+  },
+  "drawdown_context": {
+    "stock_drawdown": -0.3264690134691165,
+    "peak": "2022-02",
+    "trough": "2023-10",
+    "peers": {
+      "RY.TO": -0.15137379243074578,
+      "TD.TO": -0.18224946599038716,
+      "BNS.TO": -0.32101993463003275,
+      "BMO.TO": -0.21578940565818172,
+      "NA.TO": null
+    },
+    "peer_avg_same_window": -0.21760814967733685,
+    "sector_members": [
+      "RY.TO",
+      "TD.TO",
+      "BNS.TO",
+      "BMO.TO"
+    ],
+    "sector_same_window": -0.21829324700746777,
+    "sector_max_drawdown": -0.22205848428125807,
+    "sector_peak": "2022-01",
+    "sector_trough": "2023-10",
+    "excess_vs_sector": -0.10817576646164873
+  },
+  "flags": [
+    "Its worst fall was more than 10 points deeper than the sector's over the same months: stock-specific risk.",
+    "Max drawdown and Sharpe from month-end closes (a daily-price drawdown would be somewhat deeper)",
+    "Beta: stockanalysis.com published 5Y beta"
+  ],
+  "sector_rank": 1,
+  "sector_size": 6,
+  "rationale": "Canadian Imperial Bank of Commerce scores 64% against RY, TD, BNS, BMO, NA and ranks #1 of 6 in its sector, which maps to a HOLD. Its strongest area is valuation vs peers (80%), led by P/E (trailing) of 15.3x vs a peer median of 17.6x. The weakest is risk (25%), dragged down by Beta vs TSX of 1.24 vs a peer median of 1.12. Applying the peer average forward P/E of 14.9x to forward EPS of $11.14 gives a target of $166.25, +4.3% from $159.40. Analysts' consensus target is $170.50 (+7.0%), with 15 analysts rating it Hold. The downside case is a repeat of its five-year max drawdown of -32.6%, roughly $107.36. Over the same months the sector index moved -21.8%, so most of that fall was company-specific. Beta of 1.24 means it has moved more than the market.",
+  "rationale_source": "template (every number traceable to the scorecard)"
+}

@@ -1,0 +1,49 @@
+//@version=6
+// Fundamentals probe — checks which TradingView fundamentals load for a TSX symbol (built for TSX:RY).
+// Indicator only, no orders. Prints the latest values in a table; columns marked "na" are not available.
+indicator("TSX Fundamentals Probe", shorttitle = "FUND-PROBE", overlay = true)
+
+// Earnings (placed on the publication bar — safe for backtests)
+float epsAct = request.earnings(syminfo.tickerid, earnings.actual, ignore_invalid_symbol = true)
+float epsEst = request.earnings(syminfo.tickerid, earnings.estimate, ignore_invalid_symbol = true)
+
+// Financials (placed at start of next fiscal period — lookahead risk in backtests)
+float epsTTM  = request.financial(syminfo.tickerid, "EARNINGS_PER_SHARE_DILUTED", "TTM", ignore_invalid_symbol = true)
+float roe     = request.financial(syminfo.tickerid, "RETURN_ON_EQUITY", "FQ", ignore_invalid_symbol = true)
+float bvps    = request.financial(syminfo.tickerid, "BOOK_VALUE_PER_SHARE", "FQ", ignore_invalid_symbol = true)
+float dps     = request.financial(syminfo.tickerid, "DPS_COMMON_STOCK_PRIM_ISSUE", "FY", ignore_invalid_symbol = true)
+float payout  = request.financial(syminfo.tickerid, "DIVIDEND_PAYOUT_RATIO", "FY", ignore_invalid_symbol = true)
+float de      = request.financial(syminfo.tickerid, "DEBT_TO_EQUITY", "FQ", ignore_invalid_symbol = true)
+float tce     = request.financial(syminfo.tickerid, "TANGIBLE_COMMON_EQUITY_RATIO", "FQ", ignore_invalid_symbol = true)
+float revG    = request.financial(syminfo.tickerid, "TOTAL_REVENUE", "FY", ignore_invalid_symbol = true)
+float fcf     = request.financial(syminfo.tickerid, "FREE_CASH_FLOW", "FY", ignore_invalid_symbol = true)
+
+f(x, fmt) => na(x) ? "na" : str.tostring(x, fmt)
+
+var table t = table.new(position.top_right, 2, 18, bgcolor = color.new(color.black, 15), border_width = 1)
+row(int r, string k, string v) =>
+    t.cell(0, r, k, text_color = color.white, text_size = size.small)
+    t.cell(1, r, v, text_color = color.white, text_size = size.small)
+
+if barstate.islast
+    row(0,  "Symbol", syminfo.tickerid + "  close " + f(close, "#.00"))
+    row(1,  "EPS actual (last qtr)", f(epsAct, "#.00"))
+    row(2,  "EPS estimate (last qtr)", f(epsEst, "#.00"))
+    row(3,  "EPS diluted TTM", f(epsTTM, "#.00"))
+    row(4,  "P/E (close / TTM EPS)", f(close / epsTTM, "#.0"))
+    row(5,  "Book value / share", f(bvps, "#.00"))
+    row(6,  "P/B", f(close / bvps, "#.00"))
+    row(7,  "ROE %", f(roe, "#.0"))
+    row(8,  "Debt / equity", f(de, "#.00"))
+    row(9,  "Tangible common equity ratio %", f(tce, "#.00"))
+    row(10, "DPS (FY)", f(dps, "#.00"))
+    row(11, "Dividend yield %", f(dps / close * 100, "#.00"))
+    row(12, "Payout ratio %", f(payout, "#.0"))
+    row(13, "Revenue FY", f(revG / 1e9, "#.0") + "B")
+    row(14, "Free cash flow FY", f(fcf / 1e9, "#.0") + "B")
+    row(15, "Analyst target avg", f(syminfo.target_price_average, "#.00"))
+    row(16, "Target high / low", f(syminfo.target_price_high, "#.00") + " / " + f(syminfo.target_price_low, "#.00"))
+    row(17, "Analysts: n / buy / hold / sell", f(syminfo.target_price_estimates, "#") + " / " + f(syminfo.recommendations_buy + syminfo.recommendations_buy_strong, "#") + " / " + f(syminfo.recommendations_hold, "#") + " / " + f(syminfo.recommendations_sell + syminfo.recommendations_sell_strong, "#"))
+
+plot(epsAct, "EPS actual", display = display.data_window)
+plot(epsTTM, "EPS TTM", display = display.data_window)

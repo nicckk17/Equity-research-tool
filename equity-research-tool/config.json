@@ -1,0 +1,81 @@
+{
+  "_about": "All the judgment calls in one place. Change a number here and the tool uses it on the next run.",
+
+  "weights": {
+    "default": {
+      "valuation": 0.25,
+      "profitability": 0.20,
+      "balance_sheet": 0.20,
+      "growth": 0.15,
+      "risk": 0.10,
+      "dividend": 0.10
+    },
+    "bank": {
+      "valuation": 0.25,
+      "profitability": 0.20,
+      "balance_sheet": 0.20,
+      "growth": 0.15,
+      "risk": 0.10,
+      "dividend": 0.10
+    },
+    "energy": {
+      "valuation": 0.25,
+      "profitability": 0.20,
+      "balance_sheet": 0.25,
+      "growth": 0.05,
+      "risk": 0.15,
+      "dividend": 0.10
+    }
+  },
+
+  "_metrics_note": "Which ratios feed each parameter. 'higher' = higher is better, 'lower' = lower is better.",
+  "metrics": {
+    "default": {
+      "valuation":     [["pe_trailing", "lower"], ["ev_ebitda", "lower"], ["pb", "lower"]],
+      "profitability": [["net_margin", "higher"], ["operating_margin", "higher"], ["roe", "higher"]],
+      "balance_sheet": [["debt_to_equity", "lower"], ["fcf_yield", "higher"]],
+      "growth":        [["revenue_cagr_3y", "higher"], ["eps_cagr_3y", "higher"]],
+      "risk":          [["beta", "lower"], ["sharpe", "higher"], ["max_drawdown", "higher"]],
+      "dividend":      [["dividend_yield", "higher"], ["payout_ratio", "lower"]]
+    },
+    "bank": {
+      "valuation":     [["pe_trailing", "lower"], ["pb", "lower"]],
+      "profitability": [["roe", "higher"], ["net_margin", "higher"]],
+      "balance_sheet": [["cet1_ratio", "higher"]],
+      "growth":        [["revenue_cagr_3y", "higher"], ["eps_cagr_3y", "higher"]],
+      "risk":          [["beta", "lower"], ["sharpe", "higher"], ["max_drawdown", "higher"]],
+      "dividend":      [["dividend_yield", "higher"], ["payout_ratio", "lower"]]
+    }
+  },
+
+  "_thresholds_note": "Scores are 0-100%. These are the brief's 3.8 and 2.5 (on a 1-5 scale) converted: (3.8-1)/4 = 70%, (2.5-1)/4 = 37.5%.",
+  "_min_data_coverage_note": "Share of the weighted score (by parameter weight) that must rest on real data. Below this the call is marked low confidence; the call itself doesn't change.",
+  "min_data_coverage": 0.70,
+  "thresholds": {
+    "buy_at_or_above": 70,
+    "hold_at_or_above": 37.5
+  },
+
+  "risk": {
+    "benchmark": "^GSPTSE",
+    "lookback_years": 5,
+    "auto_risk_free": true,
+    "risk_free_rate": 0.024,
+    "_risk_free_note": "Canada 3-month T-bill yield, 2.40% on 2026-10-14 (Trading Economics). Fallback only: with auto_risk_free on, the tool pulls the current yield from the Bank of Canada (series V80691344) each run."
+  },
+
+  "target_price": {
+    "_note": "Target = average forward P/E of peers x company's forward EPS. Peer P/Es outside the range below are dropped as outliers.",
+    "min_peer_pe": 3,
+    "max_peer_pe": 60
+  },
+
+  "max_peers": 5,
+  "default_exchange_suffix": ".TO",
+
+  "ai_rationale": {
+    "_note": "Optional. Only used with --ai and an ANTHROPIC_API_KEY environment variable.",
+    "model": "claude-sonnet-5-5",
+    "max_words": 150
+  }
+}

@@ -1,0 +1,103 @@
+//@version=6
+// TSX Trend Breakout v2 — re-run of TSX-TB with fixes from the Pine v6 manual notes.
+// Changes vs v1: long-only lock, slippage 1 tick, explicit capital, exchange-time date windows
+// (in-sample 2000–2015 / out-of-sample 2016–2026), dividend-adjusted buy-and-hold benchmark,
+// sample-stdev Sharpe on monthly strategy returns. Entry/exit logic unchanged.
+strategy("TSX Trend Breakout v2", shorttitle = "TSX-TB2", overlay = true, initial_capital = 10000,
+     default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0,
+     commission_type = strategy.commission.percent, commission_value = 0.1, slippage = 1,
+     process_orders_on_close = false, calc_on_every_tick = false, margin_long = 100,
+     risk_free_rate = 2)
+
+strategy.risk.allow_entry_in(strategy.direction.long)
+
+stopAtr = input.float(2.0, "Initial stop (ATR)", step = 0.5)
+period  = input.string("Full 2000–2026", "Test window", options = ["Full 2000–2026", "In-sample 2000–2015", "Out-of-sample 2016–2026"])
+rfAnn   = input.float(2.0, "Risk-free rate % (for Sharpe)")
+
+int tStart = switch period
+    "In-sample 2000–2015"     => timestamp(syminfo.timezone, 2000, 1, 1, 0, 0)
+    "Out-of-sample 2016–2026" => timestamp(syminfo.timezone, 2016, 1, 1, 0, 0)
+    => timestamp(syminfo.timezone, 2000, 1, 1, 0, 0)
+int tEnd = period == "In-sample 2000–2015" ? timestamp(syminfo.timezone, 2016, 1, 1, 0, 0) : timestamp(syminfo.timezone, 2100, 1, 1, 0, 0)
+bool inWin = time >= tStart and time < tEnd
+
+// ── Signals (computed every bar at global scope) ─────────────────────────────
+float atr14  = ta.atr(14)
+float upBand = math.min(ta.highest(high, 20), ta.ema(close, 20) + 2 * ta.atr(20))
+float dl40   = math.max(ta.lowest(low, 40), ta.ema(close, 40) - 2 * ta.atr(40))
+bool  signal = inWin and close >= upBand[1]
+
+var float trail = na
+if strategy.position_size == 0
+    trail := na
+    if signal
+        strategy.entry("Long", strategy.long)
+else
+    float init = strategy.position_avg_price - stopAtr * atr14[1]
+    trail := na(trail) ? math.max(init, nz(dl40, init)) : math.max(trail, nz(dl40, trail))
+    strategy.exit("Stop", "Long", stop = trail)
+
+// Close any open trade at the in-sample boundary so the windows don't overlap.
+if not inWin and strategy.position_size > 0
+    strategy.close_all("Window end")
+
+// ── Benchmark: dividend-adjusted buy-and-hold over the same window ───────────
+string adjId = ticker.modify(syminfo.tickerid, adjustment = adjustment.dividends)
+float adjClose = request.security(adjId, timeframe.period, close)
+var float bhStart = na
+var float bhLast  = na
+if inWin
+    if na(bhStart)
+        bhStart := adjClose
+    bhLast := adjClose
+
+// ── Monthly returns → Sharpe (sample stdev) and max drawdown ─────────────────
+var array<float> mRets = array.new<float>()
+var float mEqStart = na
+var float peakEq = na
+var float maxDD = 0.0
+float eq = strategy.equity
+bool newMonth = timeframe.change("1M")   // global scope: must run every bar
+if inWin
+    if na(mEqStart)
+        mEqStart := eq
+    if newMonth and bar_index > 0
+        mRets.push(eq[1] / mEqStart - 1)
+        mEqStart := eq[1]
+    peakEq := na(peakEq) ? eq : math.max(peakEq, eq)
+    maxDD := math.max(maxDD, 1 - eq / peakEq)
+
+// ── Results table ────────────────────────────────────────────────────────────
+var table t = table.new(position.top_right, 2, 9, bgcolor = color.new(color.black, 15), border_width = 1)
+if barstate.islastconfirmedhistory or barstate.islast
+    float rfM   = rfAnn / 100 / 12
+    int   n     = mRets.size()
+    float mean  = n > 1 ? mRets.avg() : na
+    float sd    = n > 1 ? mRets.stdev(false) : na
+    float sharpe = n > 1 and sd > 0 ? (mean - rfM) / sd * math.sqrt(12) : na
+    float stratRet = strategy.equity / strategy.initial_capital - 1
+    float bhRet = bhLast / bhStart - 1
+    int   trades = strategy.closedtrades
+    float winPct = trades > 0 ? strategy.wintrades / trades * 100 : na
+    t.cell(0, 0, "TSX-TB2 · " + period, text_color = color.white)
+    t.cell(1, 0, syminfo.tickerid, text_color = color.white)
+    t.cell(0, 1, "Strategy return", text_color = color.white)
+    t.cell(1, 1, str.tostring(stratRet * 100, "#.0") + "%", text_color = color.white)
+    t.cell(0, 2, "Buy & hold (div-adj)", text_color = color.white)
+    t.cell(1, 2, str.tostring(bhRet * 100, "#.0") + "%", text_color = color.white)
+    t.cell(0, 3, "Max drawdown (equity)", text_color = color.white)
+    t.cell(1, 3, str.tostring(maxDD * 100, "#.0") + "%", text_color = color.white)
+    t.cell(0, 4, "Sharpe (monthly, sample sd)", text_color = color.white)
+    t.cell(1, 4, str.tostring(sharpe, "#.00"), text_color = color.white)
+    t.cell(0, 5, "Closed trades", text_color = color.white)
+    t.cell(1, 5, str.tostring(trades), text_color = color.white)
+    t.cell(0, 6, "Win rate", text_color = color.white)
+    t.cell(1, 6, str.tostring(winPct, "#.0") + "%", text_color = color.white)
+    t.cell(0, 7, "Months in sample", text_color = color.white)
+    t.cell(1, 7, str.tostring(n), text_color = color.white)
+    t.cell(0, 8, "Profit factor", text_color = color.white)
+    t.cell(1, 8, str.tostring(strategy.grossloss > 0 ? strategy.grossprofit / strategy.grossloss : na, "#.00"), text_color = color.white)
+
+plot(strategy.position_size > 0 ? trail : na, "Trailing stop", color.new(color.red, 0), 1, plot.style_linebr)
+plot(upBand, "Entry band", color.new(color.teal, 60))

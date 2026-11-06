@@ -1,0 +1,14 @@
+{
+ "_about": "Dated analyst price targets for Aritzia (TSX:ATZ) and the actual closing price on the issue date and ~12 months later. Analyst targets are 12-month targets. Sources: MarketBeat instant alerts (dates and targets from the alert titles), Simply Wall St consensus update (Sep 25, 2025), stockanalysis.com daily closes.",
+ "ticker": "ATZ.TO",
+ "predictions": [
+  {"date": "2025-07-10", "who": "Analyst (MarketBeat alert)", "target": 84.0,  "price_then": 74.05, "outcome_date": "2026-07-10", "price_after": 160.05},
+  {"date": "2025-07-11", "who": "Analyst (MarketBeat alert)", "target": 87.0,  "price_then": 75.14, "outcome_date": "2026-07-10", "price_after": 160.05},
+  {"date": "2025-07-11", "who": "Analyst (MarketBeat alert)", "target": 93.0,  "price_then": 75.14, "outcome_date": "2026-07-10", "price_after": 160.05},
+  {"date": "2025-09-25", "who": "Consensus (Simply Wall St)",  "target": 93.36, "price_then": 85.74, "outcome_date": "2026-09-25", "price_after": 117.81},
+  {"date": "2025-10-10", "who": "Jefferies",                   "target": 92.0,  "price_then": 86.00, "outcome_date": "2026-10-09", "price_after": 146.91},
+  {"date": "2025-10-10", "who": "Desjardins",                  "target": 95.0,  "price_then": 86.00, "outcome_date": "2026-10-09", "price_after": 146.91},
+  {"date": "2025-10-10", "who": "Truist",                      "target": 102.0, "price_then": 86.00, "outcome_date": "2026-10-09", "price_after": 146.91}
+ ],
+ "max_high_in_window": {"2025-07": 174.52, "2025-09": 174.52, "2025-10": 174.52, "_note": "highest intraday price 2026-06-15, inside both 12-month windows"}
+}

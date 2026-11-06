@@ -1,0 +1,32 @@
+//@version=6
+// TSX Trend Breakout (Dow Award style) — Strategy Tester twin of tsxta.backtest(trend_breakout, exit "donchian40").
+// Entry : close >= min(Donchian20 high, EMA20 + 2*ATR20) of the prior bar → buy next open.
+// Stop  : initial = entry - 2*ATR14; trails up to max(Donchian40 low, EMA40 - 2*ATR40); never moves down.
+// Costs : 0.10% per side. Long only, 100% of equity, one position. Fills on standard OHLC.
+strategy("TSX Trend Breakout", shorttitle = "TSX-TB", overlay = true, initial_capital = 10000,
+     default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0,
+     commission_type = strategy.commission.percent, commission_value = 0.1, slippage = 0,
+     process_orders_on_close = false, calc_on_every_tick = false, margin_long = 100)
+
+stopAtr  = input.float(2.0, "Initial stop (ATR)", step = 0.5)
+startYr  = input.int(2000, "Start year")
+
+atr14  = ta.atr(14)
+upBand = math.min(ta.highest(high, 20), ta.ema(close, 20) + 2 * ta.atr(20))
+dl40   = math.max(ta.lowest(low, 40), ta.ema(close, 40) - 2 * ta.atr(40))
+inRange = year(time) >= startYr
+
+signal = inRange and close >= upBand[1]
+
+var float trail = na
+if strategy.position_size == 0
+    trail := na
+    if signal
+        strategy.entry("Long", strategy.long)
+else
+    float init = strategy.position_avg_price - stopAtr * atr14[1]
+    trail := na(trail) ? math.max(init, nz(dl40, init)) : math.max(trail, nz(dl40, trail))
+    strategy.exit("Stop", "Long", stop = trail)
+
+plot(strategy.position_size > 0 ? trail : na, "Trailing stop", color.new(color.red, 0), 1, plot.style_linebr)
+plot(upBand, "Entry band", color.new(color.teal, 60))
