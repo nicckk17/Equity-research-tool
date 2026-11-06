@@ -4,8 +4,7 @@
 
 Built by **Nikhil (Nik) Galhotra** · CSC® · CFA Level I candidate (May 2027) · Vancouver, BC · [LinkedIn](https://linkedin.com/in/nikhilgalhotra)
 
-I built this to learn equity analysis by doing it: the method follows what an analyst would do by hand (compare a company to its peers, weigh what matters for its sector, value it on peer multiples), and the tool just does it faster. I can explain every weight and every number without the code.
-
+the method follows what an analyst would do by hand (compare a company to its peers, weigh what matters for its sector, value it on peer multiples).
 ---
 
 ## Example output: Royal Bank of Canada (TSX: RY), 21 Oct 2026
